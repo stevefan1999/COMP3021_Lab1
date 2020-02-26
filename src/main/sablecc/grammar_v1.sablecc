@@ -1,0 +1,22 @@
+Package littlelang.v1;
+
+Tokens
+number = ['0' .. '9']+;
+plus = '+';
+l_par = '(';
+r_par = ')';
+blank = (' ' | '\r' | '\n')+;
+
+Ignored Tokens
+blank;
+
+Productions
+ expr =
+     {factor} factor
+   | {plus} expr plus factor
+;
+
+factor =
+    {number} number
+  | {expr} l_par expr r_par
+;
