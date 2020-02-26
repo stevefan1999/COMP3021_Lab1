@@ -1,0 +1,40 @@
+Package littlelang.v3;
+
+Tokens
+number = ['0' .. '9']+;
+t_plus = '+';
+t_minus = '-';
+t_star = '*';
+t_slash = '/';
+lparen = '(';
+rparen = ')';
+blank = (' ' | '\r' | '\n')+;
+
+Ignored Tokens
+blank;
+
+Productions
+expr =
+  {additive_expr} additive_expr
+;
+
+additive_expr =
+    {multiplicative_expr} multiplicative_expr
+  | {addition} multiplicative_expr t_plus additive_expr
+  | {subtraction} multiplicative_expr t_minus additive_expr
+;
+
+multiplicative_expr =
+    {primary_expr} primary_expr
+  | {multiplication} primary_expr t_star multiplicative_expr
+  | {division} primary_expr t_slash multiplicative_expr
+;
+
+primary_expr =
+    {number} number
+  | {factor} factor
+;
+
+factor =
+  {expr} lparen expr rparen
+;

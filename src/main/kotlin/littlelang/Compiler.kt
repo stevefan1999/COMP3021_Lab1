@@ -21,11 +21,10 @@ object Compiler {
         }
     }
 
-    fun generateParseTree(reader: Reader): Start? {
+    private fun generateParseTree(reader: Reader): Start? {
         val pushbackReader = PushbackReader(reader, 1024)
         val lexer = Lexer(pushbackReader)
         val p = Parser(lexer)
-        val tree = p.parse()
-        return tree
+        return p.parse()
     }
 }
