@@ -5,7 +5,6 @@ import littlelang.v3.lexer.LexerException
 import littlelang.v3.node.Start
 import littlelang.v3.parser.Parser
 import littlelang.v3.parser.ParserException
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import java.io.IOException
