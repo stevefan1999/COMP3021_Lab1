@@ -1,0 +1,27 @@
+Package assignlang;
+
+Helpers
+lc_letter = ['a'..'z'];
+uc_letter = ['A'..'Z'];
+letter = lc_letter | uc_letter;
+
+Tokens
+        keywordvar = 'VAR';
+        number = ['0'..'9']+;
+        identifier =  letter+;
+        opsemicolon = ';';
+        opequal = '=';
+        blank = (' ' | 13 | 10)+;
+
+
+Ignored Tokens
+ blank;
+
+Productions
+ program = {list} statementlist;
+
+ statementlist = {stmt} statement | {list} statement statementlist;
+
+ statement = {declare} keywordvar identifier opsemicolon | {assign} identifier opequal assignrest;
+
+ assignrest= {assign} identifier opsemicolon | {num} number opsemicolon;
